@@ -1,29 +1,32 @@
 import { Component } from 'angular2/core';
-import { Router } from 'angular2/router';
-import { QuestionnaireModel } from '../../models/questionnaire.model';
+import { QuestionnaireModel, QuestionnaireState } from '../../models/questionnaire.model';
 
 @Component({
     selector:'questionnaire-detail',
     template:`
-    <div *ngIf="questionnaire">
-    <h3>{{questionnaire.title}}</h3>
-    <span>ID: {{questionnaire.id}}</span>
-    <ul>
-        <li><a class="waves-effect waves-teal btn-flat"><i class="large material-icons top">schedule</i>完整统计</a></li>
-        <li><a class="waves-effect waves-teal btn-flat"><i class="large material-icons top">play_circle_filled</i>开始回收</a></li>
-        <li><a (click)="gotoEditPage(questionnaire.id)" class="waves-effect waves-teal btn-flat"><i class="large material-icons top">library_books</i>编辑问卷</a></li>
+    <ul class="questionnaire-list" *ngIf="questionnaire">
+       <li>问卷ID：  {{questionnaire.id}}</li>
+       <li>问卷标题：{{questionnaire.title}}</li>
+       <li>问卷状态：{{stateLabel[questionnaire.state]}}</li>
+       <li>创建时间：{{questionnaire.createDate}}</li>
+       <li>问题总数：{{questionnaire.questionList.length}}</li>
     </ul>
-</div>
     `,
+    styles:[`
+      .questionnaire-list li{
+        line-height:36px;
+      }
+    `],
     inputs:['questionnaire']
 })
 
 export class QuestionnaireDetailComponent{
   private questionnaire:QuestionnaireModel;
+  private stateLabel:Object = {};
 
-  constructor(private _router:Router){}
-
-  gotoEditPage(id:string){
-    this._router.navigate(['Edit',{id:id}]);
+  constructor(){
+    this.stateLabel[QuestionnaireState.Edit] = "可编辑";
+    this.stateLabel[QuestionnaireState.Published] = "回收中";
+    this.stateLabel[QuestionnaireState.Finished] = "已完成";
   }
 }

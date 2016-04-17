@@ -1,9 +1,10 @@
 import {Component,OnInit} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
+import {RouteParams, Router } from 'angular2/router';
 import {QuestionnaireService} from '../services/questionnaire.service';
 import { QuestionType, QuestionModel } from '../models/question.model';
 import { QuestionnaireModel, QuestionnaireState } from '../models/questionnaire.model';
 import {QuestionControlList} from './components/questionnaire.controls';
+import { QuestionnaireOutline } from './components/questionnaire.outline';
 import {QuestionnairePage} from '../common/components/questionnaire.page';
 
 console.log('`edit` page component loaded asynchronously');
@@ -12,7 +13,7 @@ console.log('`edit` page component loaded asynchronously');
   selector: 'edit-page',
   template: require('./edit.html'),
   providers:[QuestionnaireService],
-  directives:[QuestionControlList, QuestionnairePage],
+  directives:[QuestionControlList, QuestionnaireOutline, QuestionnairePage],
   styles: [`
     .tabs {
       overflow: hidden;
@@ -24,7 +25,7 @@ export class EditPage implements OnInit{
   private _id:string;
   constructor(
     private _questionnaireService:QuestionnaireService,
-    routeParams:RouteParams) {
+    routeParams:RouteParams, private _router:Router) {
     this._id = routeParams.get('id');
   }
 
@@ -33,7 +34,6 @@ export class EditPage implements OnInit{
     switch(type){
       case QuestionType.Text:
         question = {
-          id:'',
           desc:'',
           type:type,
           answer:''
@@ -41,7 +41,6 @@ export class EditPage implements OnInit{
         break;
       case QuestionType.SingleSelect:
         question = {
-          id:'',
           desc:'',
           type:type,
           options:[{key:0, value:''},{key:1, value:''}],
@@ -50,7 +49,6 @@ export class EditPage implements OnInit{
         break;
       case QuestionType.MultiSelect:
         question = {
-          id:'',
           desc:'',
           type:type,
           options:[{key:0, value:''},{key:1, value:''}],
@@ -59,7 +57,6 @@ export class EditPage implements OnInit{
         break;
       case QuestionType.Score:
         question = {
-          id:'',
           desc:'',
           type:type,
           answer:''
@@ -67,7 +64,6 @@ export class EditPage implements OnInit{
         break;
       default:
         question = {
-          id:'',
           desc:'',
           type:type,
           answer:''
@@ -80,8 +76,9 @@ export class EditPage implements OnInit{
 
   saveQuestionnaire(questionnaire:QuestionnaireModel){
     if(!questionnaire) {return;}
-    this._questionnaireService.addQuestionnaire(questionnaire)
+    this._questionnaireService.updateQuestionnaire(questionnaire)
       .subscribe(
+        questionnaire => this._router.navigate(['My']),
         error=> console.error(error));
   }
 

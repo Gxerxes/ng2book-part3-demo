@@ -14,4 +14,5 @@ export interface QuestionnaireModel{
   ending:string;  //结束问候语
   state:QuestionnaireState; //问卷状态
   questionList: QuestionModel[]; //问题列表
+  createDate?:string;//创建日期
 }

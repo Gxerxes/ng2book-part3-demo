@@ -60,17 +60,22 @@ server.get('/questionnaire/:id', function(req, res){
 server.post('/questionnaire/add', function(req, res){
   var item = req.body;
   item.id = uuid.v1();
+  item.createDate = new Date().toLocaleDateString();
   db('questionnaires').push(item).then(function(){
-    webshot('http://localhost:3000/admin/edit/' + item.id, './public/thumbnails/'+item.id+'.png', function(err){
-      if(err){
-        console.log('create thumbnail for ' + item.id + ' failure');
-        console.log(err);
-        return;
-      }
-
-      res.json({'success':true, data:item});
-    });
+    res.json({'success':true, data:item});
   });
+});
+
+server.post('/questionnaire/update', function(req, res){
+  var item = req.body;
+  db('questionnaires').chain().find({id:item.id}).assign(item).value();
+  res.json({'success':true, data:item});
+});
+
+server.post('/questionnaire/publish', function(req, res){
+  var item = req.body;
+  db('questionnaires').chain().find({id:item.id}).assign({state:2}).value();
+  res.json({'success':true, data:item});
 });
 
 //get questionnaire page thumbnail

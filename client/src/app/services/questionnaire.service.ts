@@ -33,6 +33,26 @@ export class QuestionnaireService{
                   .catch(this.handleError);
   }
 
+  publishQuestionnaire(questionnaire:QuestionnaireModel):Observable<QuestionnaireModel>{
+    let body = JSON.stringify(questionnaire);
+    let headers = new Headers({'Content-Type':'application/json'});
+    let options = new RequestOptions({headers:headers});
+
+    return this.http.post(this._apiHost + '/questionnaire/publish', body, options)
+      .map(res => <QuestionnaireModel>res.json().data)
+      .catch(this.handleError);
+  }
+
+  updateQuestionnaire(questionnaire:QuestionnaireModel):Observable<QuestionnaireModel> {
+    let body = JSON.stringify(questionnaire);
+    let headers = new Headers({'Content-Type':'application/json'});
+    let options = new RequestOptions({headers:headers});
+
+    return this.http.post(this._apiHost + '/questionnaire/update', body, options)
+      .map(res => <QuestionnaireModel>res.json().data)
+      .catch(this.handleError);
+  }
+
   private handleError(error: Response){
     console.error(error);
     return Observable.throw(error.json().error || 'server error');

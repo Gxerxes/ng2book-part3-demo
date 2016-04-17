@@ -1,8 +1,9 @@
 import {Component,OnInit} from 'angular2/core';
 import {QuestionnaireService} from '../services/questionnaire.service';
 import { QuestionnaireModel } from '../models/questionnaire.model';
-import { QuestionnaireCardComponent } from './components/questionnaire-card';
+import { QuestionnaireItemComponent } from './components/questionnaire-item';
 import { QuestionnaireDetailComponent } from './components/questionnaire-detail';
+import { QuestionnaireToolsComponent } from './components/questionnaire-tools';
 
 console.log('`My Page` component loaded asynchronously');
 
@@ -11,7 +12,7 @@ console.log('`My Page` component loaded asynchronously');
   providers:[QuestionnaireService],
   selector: 'my-page',
   templateUrl: 'app/my/my.html',
-  directives:[QuestionnaireCardComponent, QuestionnaireDetailComponent]
+  directives:[QuestionnaireItemComponent, QuestionnaireDetailComponent,QuestionnaireToolsComponent]
 })
 export class MyPage implements OnInit{
   questionnaires: QuestionnaireModel[];

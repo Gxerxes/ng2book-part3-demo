@@ -10,15 +10,15 @@ console.log('`published` page component loaded asynchronously');
 @Component({
   selector: 'published-page',
   template: require('./page.html'),
-  providers:[QuestionnaireService],
-  directives:[ QuestionnairePage],
-  styles: [`
-    .tabs {
-      overflow: hidden;
+  styles:[`
+    .questionnaire-page{
+      padding:50px;
     }
-  `]
+  `],
+  providers:[QuestionnaireService],
+  directives:[ QuestionnairePage]
 })
-export class EditPage implements OnInit{
+export class PublishedPage implements OnInit{
   questionnaire:QuestionnaireModel;
   private _id:string;
   constructor(
@@ -27,66 +27,7 @@ export class EditPage implements OnInit{
     this._id = routeParams.get('id');
   }
 
-  addQuestion(type:QuestionType){
-    let question;
-    switch(type){
-      case QuestionType.Text:
-        question = {
-          id:'',
-          desc:'',
-          type:type,
-          answer:''
-        };
-        break;
-      case QuestionType.SingleSelect:
-        question = {
-          id:'',
-          desc:'',
-          type:type,
-          options:[{key:0, value:''},{key:1, value:''}],
-          answer:''
-        };
-        break;
-      case QuestionType.MultiSelect:
-        question = {
-          id:'',
-          desc:'',
-          type:type,
-          options:[{key:0, value:''},{key:1, value:''}],
-          answer:''
-        };
-        break;
-      case QuestionType.Score:
-        question = {
-          id:'',
-          desc:'',
-          type:type,
-          answer:''
-        };
-        break;
-      default:
-        question = {
-          id:'',
-          desc:'',
-          type:type,
-          answer:''
-        };
-        break;
-
-    }
-    this.questionnaire.questionList.push(question);
-  }
-
-  saveQuestionnaire(questionnaire:QuestionnaireModel){
-    if(!questionnaire) {return;}
-    this._questionnaireService.addQuestionnaire(questionnaire)
-      .subscribe(
-        error=> console.error(error));
-  }
-
   ngOnInit() {
-    console.log('hello `Edit Page` component');
-    $('ul.tabs').tabs();
     this.questionnaire = {
       title:'',
       starter:'',

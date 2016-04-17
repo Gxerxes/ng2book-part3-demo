@@ -13,31 +13,42 @@ import { QuestionScoreCmp} from './question.score';
   selector:'questionnaire-page',
   directives:[QuestionTextCmp, QuestionRadioCmp, QuestionCheckboxCmp, QuestionScoreCmp],
   template:`
-    <h1><input placeholder="请输入问卷标题" [(ngModel)]="questionnaire.title"></h1>
-    <p><input placeholder="请输入开始欢迎语" [(ngModel)]="questionnaire.starter"></p>
+  <template [ngIf] = "isPublished">
+     <h1>{{questionnaire.title}}</h1>
+      <p>{{questionnaire.starter}}</p>
+  </template>
+  <template [ngIf] = "!isPublished">
+     <h1><input placeholder="请输入问卷标题" [(ngModel)]="questionnaire.title"></h1>
+      <p><input placeholder="请输入开始欢迎语" [(ngModel)]="questionnaire.starter"></p>
+  </template>
     <br/>
     <ul>
     <li *ngFor="#q of questionnaire.questionList" [ngSwitch]="q.type">
       <template [ngSwitchWhen]="0">
-        <question-text [question] = "q" (delQuestionRequest)="delQuestion($index)" [isPublished] = "isPublished" [isEdit]="isEdit"></question-text>
+        <question-text [question] = "q" (delQuestionRequest)="delQuestion($index)" [isPublished] = "isPublished"></question-text>
       </template>
 
       <template [ngSwitchWhen]="1">
-        <question-radio [question] = "q" (delQuestionRequest)="delQuestion($index)" [isPublished] = "isPublished" [isEdit]="isEdit"></question-radio>
+        <question-radio [question] = "q" (delQuestionRequest)="delQuestion($index)" [isPublished] = "isPublished"></question-radio>
       </template>
 
       <template [ngSwitchWhen]="2">
-         <question-checkbox [question] = "q" (delQuestionRequest)="delQuestion($index)" [isPublished] = "isPublished" [isEdit]="isEdit"></question-checkbox>
+         <question-checkbox [question] = "q" (delQuestionRequest)="delQuestion($index)" [isPublished] = "isPublished"></question-checkbox>
       </template>
 
       <template [ngSwitchWhen]="3">
-        <question-score [question] = "q" (delQuestionRequest)="delQuestion($index)" [isPublished] = "isPublished" [isEdit]="isEdit"></question-score>
+        <question-score [question] = "q" (delQuestionRequest)="delQuestion($index)" [isPublished] = "isPublished"></question-score>
       </template>
       <template ngSwitchDefault>Unknown: {{q.type}}</template>
     </li>
   </ul>
   <br/>
-   <p><input placeholder="请输入结束欢迎语" [(ngModel)]="questionnaire.ending"></p>
+  <template [ngIf] = "isPublished">
+     <p>{{questionnaire.ending}}</p>
+  </template>
+  <template [ngIf] = "!isPublished">
+     <p><input placeholder="请输入结束欢迎语" [(ngModel)]="questionnaire.ending"></p>
+  </template>
 
  <button class="btn waves-effect waves-light" type="submit" name="action" (click)="toSaveQuestionnaire($event)">提交
     <i class="material-icons right">send</i>
@@ -48,14 +59,12 @@ import { QuestionScoreCmp} from './question.score';
 export class QuestionnairePage implements OnChanges{
   questionnaire:QuestionnaireModel;
   private isPublished:boolean;
-  private isEdit:boolean;
   saveQuestionnaireRequest:EventEmitter<any> = new EventEmitter();
   data:string;
 
   constructor(private http:Http){}
 
   ngOnChanges():void{
-    this.isEdit = this.questionnaire.state == QuestionnaireState.Create;
     this.isPublished = this.questionnaire.state == QuestionnaireState.Published || this.questionnaire.state == QuestionnaireState.Finished;
   }
 

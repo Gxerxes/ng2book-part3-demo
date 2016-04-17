@@ -30,7 +30,6 @@ export class CreatePage implements OnInit{
     switch(type){
       case QuestionType.Text:
             question = {
-              id:'',
               desc:'',
               type:type,
               answer:''
@@ -38,7 +37,6 @@ export class CreatePage implements OnInit{
             break;
       case QuestionType.SingleSelect:
             question = {
-              id:'',
               desc:'',
               type:type,
               options:[{key:0, value:''},{key:1, value:''}],
@@ -47,7 +45,6 @@ export class CreatePage implements OnInit{
             break;
       case QuestionType.MultiSelect:
         question = {
-          id:'',
           desc:'',
           type:type,
           options:[{key:0, value:''},{key:1, value:''}],
@@ -56,7 +53,6 @@ export class CreatePage implements OnInit{
         break;
       case QuestionType.Score:
         question = {
-          id:'',
           desc:'',
           type:type,
           answer:''
@@ -64,7 +60,6 @@ export class CreatePage implements OnInit{
         break;
       default:
             question = {
-              id:'',
               desc:'',
               type:type,
               answer:''

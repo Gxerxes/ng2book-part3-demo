@@ -26,17 +26,9 @@ export class QuestionControlList implements OnInit {
   }
 
   ngOnInit(): void {
-    /*this.threadsService.currentThread
-     .subscribe( (currentThread: Thread) => {
-     this.selected = currentThread &&
-     this.thread &&
-     (currentThread.id === this.thread.id);
-     });*/
   }
 
   addQuestion(control: any, event: any): void {
-    /*this.threadsService.setCurrentThread(this.thread);
-     event.preventDefault();*/
     console.log('add question:', control);
 
     this.addQuestionRequest.emit(control.type);

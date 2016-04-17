@@ -10,6 +10,7 @@ import {Home} from './home/home';
 import {MyPage} from './my/my';
 import {CreatePage } from './admin/create';
 import {EditPage} from './admin/edit';
+import { PublishedPage } from './pages/published';
 //import  {LoginPop} from './common/directives/login-pop';
 /*
  * App Component
@@ -66,6 +67,7 @@ import {EditPage} from './admin/edit';
   { path: '/admin/create', component: CreatePage, name:'Create'},
   { path: '/admin/edit/:id', component: EditPage, name: 'Edit' },
   { path: '/admin/my', component: MyPage, name: 'My' },
+  {path: '/questionnaire/:id',component:PublishedPage, name:'Published'},
   // Async load a component using Webpack's require with es6-promise-loader
   { path: '/help', loader: () => require('./help/help')('Help'), name: 'Help' },
   { path: '/**', redirectTo: ['Index'] }
