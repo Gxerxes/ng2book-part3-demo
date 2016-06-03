@@ -3,6 +3,7 @@ import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
 import { HTTP_PROVIDERS} from '@angular/http';
 
 import { AboutComponent } from './+about/index';
+import { LoginComponent } from './+login/index';
 import { HomeComponent } from './+home/index';
 import { NameListService, NavbarComponent, ToolbarComponent } from './shared/index';
 
@@ -25,6 +26,10 @@ import { NameListService, NavbarComponent, ToolbarComponent } from './shared/ind
   {
     path: '/about',
     component: AboutComponent
+  },
+  {
+    path: '/login',
+    component: LoginComponent
   }
 ])
 export class AppComponent {}
