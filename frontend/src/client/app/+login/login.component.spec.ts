@@ -11,19 +11,6 @@ import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 import { LoginComponent } from './login.component';
 
 export function main() {
-  describe('Login component', () => {
-
-
-    it('should work',
-      inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-        tcb.createAsync(TestComponent)
-          .then((rootTC: any) => {
-            let loginDOMEl = rootTC.debugElement.children[0].nativeElement;
-
-	    expect(getDOM().querySelectorAll(loginDOMEl, 'h2')[0].textContent).toEqual('Features');
-          });
-        }));
-    });
 }
 
 @Component({
