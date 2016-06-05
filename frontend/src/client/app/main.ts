@@ -1,11 +1,19 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { enableProdMode, provide } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { ROUTER_PROVIDERS } from '@angular/router';
+import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
+import {ROUTER_PROVIDERS} from '@angular/router';
+import {HTTP_PROVIDERS} from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-if ('<%= ENV %>' === 'prod') { enableProdMode(); }
+const ENV_PROVIDERS: any = [];
+
+if ('<%= ENV %>' === 'prod') {
+  enableProdMode()
+} else {
+  ENV_PROVIDERS.push(ELEMENT_PROBE_PROVIDERS);
+}
 
 /**
  * Bootstraps the application and makes the ROUTER_PROVIDERS and the APP_BASE_HREF available to it.

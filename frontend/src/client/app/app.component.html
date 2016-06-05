@@ -1,3 +1,32 @@
-<sd-toolbar></sd-toolbar>
-<sd-navbar></sd-navbar>
-<router-outlet></router-outlet>
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">{{ name }}</a>
+        <!--<login-pop></login-pop>-->
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li router-active>
+                <a [routerLink]=" ['/'] ">首页</a>
+            </li>
+            <li router-active>
+                <a [routerLink]=" ['/home'] ">创建问卷</a>
+            </li>
+            <li router-active>
+                <a [routerLink]=" ['/my'] ">我的问卷</a>
+            </li>
+            <li router-active>
+                <a [routerLink]=" ['/help'] ">使用帮助</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <router-outlet></router-outlet>
+</main>
+
+<footer>
+    广发证券 Angular2 Demo by <a [href]="url">@gf-rd</a>
+    <div>
+        <img [src]="angularclassLogo" width="10%">
+    </div>
+</footer>

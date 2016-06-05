@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
-import { HTTP_PROVIDERS} from '@angular/http';
+import {FORM_PROVIDERS} from '@angular/common';
+//import {RouterActive} from './common/directives/router-active';
 
 import { AboutComponent } from './+about/index';
 import { LoginComponent } from './+login/index';
@@ -13,23 +14,26 @@ import { NameListService, NavbarComponent, ToolbarComponent } from './shared/ind
  */
 @Component({
   moduleId: module.id,
-  selector: 'sd-app',
-  viewProviders: [NameListService, HTTP_PROVIDERS],
+  selector: 'app',
+  viewProviders: [...FORM_PROVIDERS],
   templateUrl: 'app.component.html',
-  directives: [ROUTER_DIRECTIVES, NavbarComponent, ToolbarComponent]
+  styles: [`
+    footer {
+      margin: 30px;
+      text-align:center;
+    }
+  `],
+  pipes: [],
+  directives: [ROUTER_DIRECTIVES]
 })
 @Routes([
-  {
-    path: '/',
-    component: HomeComponent
-  },
-  {
-    path: '/about',
-    component: AboutComponent
-  },
-  {
-    path: '/login',
-    component: LoginComponent
-  }
+  { path: '/', component: HomeComponent},
+  { path: '/home', component: HomeComponent}
+  //{ path: '/**', redirectTo: ['Index'] }
 ])
-export class AppComponent {}
+export class AppComponent {
+  angularclassLogo = 'assets/img/angularclass-avatar.png';
+  name = 'Angular DEMO - 问卷系统';
+  url = 'https://github.com/gf-rd';
+  constructor(){}
+}
