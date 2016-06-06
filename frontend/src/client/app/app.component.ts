@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
-import {FORM_PROVIDERS} from '@angular/common';
+import { FORM_PROVIDERS } from '@angular/common';
 import { AboutComponent } from './+about/index';
 import { LoginComponent } from './+login/index';
 import { HomeComponent } from './+home/index';
