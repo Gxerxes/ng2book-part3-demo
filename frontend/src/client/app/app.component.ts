@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
 import {FORM_PROVIDERS} from '@angular/common';
-//import {RouterActive} from './common/directives/router-active';
-
 import { AboutComponent } from './+about/index';
 import { LoginComponent } from './+login/index';
 import { HomeComponent } from './+home/index';
@@ -28,8 +26,8 @@ import { NameListService, NavbarComponent, ToolbarComponent } from './shared/ind
 })
 @Routes([
   { path: '/', component: HomeComponent},
-  { path: '/home', component: HomeComponent}
-  //{ path: '/**', redirectTo: ['Index'] }
+  { path: '/home', component: HomeComponent},
+  { path: '/login', component: LoginComponent},
 ])
 export class AppComponent {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
