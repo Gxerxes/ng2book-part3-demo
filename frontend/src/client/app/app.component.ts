@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
-import {FORM_PROVIDERS} from '@angular/common';
 //import {RouterActive} from './common/directives/router-active';
 
+import { FORM_PROVIDERS } from '@angular/common';
 import { AboutComponent } from './+about/index';
 import { LoginComponent } from './+login/index';
 import { HomeComponent } from './+home/index';
@@ -29,8 +29,9 @@ import { HelpComponent } from './+help/index';
 @Routes([
   { path: '/', component: HomeComponent},
   { path: '/home', component: HomeComponent},
-  { path: '/help', component: HelpComponent}
+  { path: '/help', component: HelpComponent},
   //{ path: '/**', redirectTo: ['Index'] }
+  { path: '/login', component: LoginComponent}
 ])
 export class AppComponent {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
