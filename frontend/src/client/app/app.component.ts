@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
 import {FORM_PROVIDERS} from '@angular/common';
 //import {RouterActive} from './common/directives/router-active';
-//test
+
 import { AboutComponent } from './+about/index';
 import { LoginComponent } from './+login/index';
 import { HomeComponent } from './+home/index';
-import { NameListService, NavbarComponent, ToolbarComponent } from './shared/index';
+import { HelpComponent } from './+help/index';
 
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
@@ -28,7 +28,8 @@ import { NameListService, NavbarComponent, ToolbarComponent } from './shared/ind
 })
 @Routes([
   { path: '/', component: HomeComponent},
-  { path: '/home', component: HomeComponent}
+  { path: '/home', component: HomeComponent},
+  { path: '/help', component: HelpComponent}
   //{ path: '/**', redirectTo: ['Index'] }
 ])
 export class AppComponent {

@@ -1,4 +1,4 @@
-import {OnInit, ChangeDetectionStrategy, EventEmitter} from 'angular2/core';
+import {OnInit, ChangeDetectionStrategy, EventEmitter} from '@angular/core';
 import { QuestionModel } from '../../models/question.model';
 
 export class QuestionComponent implements OnInit {

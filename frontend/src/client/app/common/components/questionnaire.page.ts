@@ -1,5 +1,5 @@
-import { Component, OnChanges, ChangeDetectionStrategy, EventEmitter } from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import { Component, OnChanges, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
+import {Http, Response} from '@angular/http';
 import { QuestionType, QuestionModel } from '../../models/question.model';
 import { QuestionnaireModel, QuestionnaireState } from '../../models/questionnaire.model';
 import { QuestionTextCmp } from './question.text';
@@ -72,11 +72,11 @@ export class QuestionnairePage implements OnChanges{
     this.saveQuestionnaireRequest.emit(this.questionnaire);
   }
 
-  logError(err) {
+  logError(err: any) {
     console.error('There was an error: ' + err);
   }
 
-  delQuestion(index){
+  delQuestion(index: any){
     this.questionnaire.questionList.splice(index, 1);
   }
 }
