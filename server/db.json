@@ -1,3 +1,17 @@
 {
-  "user": []
+  "user": [
+    {
+      "name": "",
+      "createDate": "2016-06-14"
+    },
+    {
+      "name": "",
+      "createDate": "2016-06-14"
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "createDate": "2016-06-14"
+    }
+  ]
 }

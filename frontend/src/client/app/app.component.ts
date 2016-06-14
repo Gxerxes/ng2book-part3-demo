@@ -1,3 +1,4 @@
+import './rx.operators';
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
 //import {RouterActive} from './common/directives/router-active';

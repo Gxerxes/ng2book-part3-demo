@@ -20,7 +20,7 @@ server.get('/user/:username', function(req, res) {
     .find({
       username: req.params.username
     });
-  console.log(user);
+  console.log('get user', user);
   res.json({
     success: true,
     data: user
@@ -29,7 +29,9 @@ server.get('/user/:username', function(req, res) {
 
 server.post('/user/add', function(req, res) {
   var item = req.body;
+  console.log('item', item);
   item.createDate = new Date().toLocaleDateString();
+  console.log('add user', item);
   db('user')
     .push(item)
     .then(function() {
