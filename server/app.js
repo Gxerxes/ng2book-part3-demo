@@ -136,10 +136,11 @@ server.get('/questionnaire/thumbnail/:id', function(req, res) {
   res.writeHead(200);
 });
 
+var dbfile = process.env.prod === '1' ? 'db.json' : '_db.json';
 // Returns an Express router
-var router = jsonServer.router('db.json');
+var router = jsonServer.router(dbfile);
 server.use('/api', router);
 
 server.listen(8100, function() {
-  console.log('server is running at ', 8100);
+  console.log('server is running at ', 8100, dbfile);
 });
