@@ -5,6 +5,17 @@ var fs = require('fs');
 
 var uuid = require('node-uuid');
 
+var crypto = require('crypto');
+
+var md5 = function(str) {
+  return crypto
+    .createHash('md5')
+    .update(str.toString())
+    .digest('hex');
+};
+
+var dbfile = process.env.prod === '1' ? 'db.json' : '_db.json';
+
 // Returns an Express server
 var server = jsonServer.create();
 
@@ -15,31 +26,67 @@ var bodyParser = require('body-parser');
 // parse application/json
 server.use(bodyParser.json());
 
+// get userinfo
 server.get('/user/:username', function(req, res) {
   var user = db('user')
     .find({
       username: req.params.username
     });
-  console.log('get user', user);
+
   res.json({
     success: true,
-    data: user
+    data: {
+      username: user.username,
+      createDate: user.createDate
+    }
   });
 });
 
+// register
 server.post('/user/add', function(req, res) {
   var item = req.body;
-  console.log('item', item);
-  item.createDate = new Date().toLocaleDateString();
-  console.log('add user', item);
-  db('user')
-    .push(item)
-    .then(function() {
-      res.json({
-        success: true,
-        data: item
-      });
+  var user = db('user')
+    .find({
+      username: item.username
     });
+  if (user) {
+    res.json({
+      success: false,
+      message: 'username `' + item.username + '` is exists'
+    })
+  } else {
+    item.password = md5(item.password);
+    item.createDate = new Date().toLocaleDateString();
+    db('user')
+      .push(item)
+      .then(function() {
+        res.json({
+          success: true
+        });
+      });
+  }
+});
+
+// login
+server.post('/login', function(req, res) {
+  var data = req.body || {};
+  var username = data.username;
+  var user = db('user')
+    .find({
+      username: username
+    });
+
+  if (user && user.password === md5(data.password)) {
+    // todo reset session
+    res.json({
+      success: true
+    });
+  } else {
+    res.json({
+      success: false,
+      message: 'username or password error'
+    });
+  }
 });
 
 // Add custom routes
@@ -52,7 +99,7 @@ server.get('/custom', function(req, res) {
 // Todo: using json server export lowdb instance?
 var low = require('lowdb');
 var storage = require('lowdb/file-async');
-var db = low('db.json', {
+var db = low(dbfile, {
   storage: storage
 });
 
@@ -136,7 +183,6 @@ server.get('/questionnaire/thumbnail/:id', function(req, res) {
   res.writeHead(200);
 });
 
-var dbfile = process.env.prod === '1' ? 'db.json' : '_db.json';
 // Returns an Express router
 var router = jsonServer.router(dbfile);
 server.use('/api', router);

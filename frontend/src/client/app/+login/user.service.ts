@@ -11,7 +11,7 @@ import { Observable }     from 'rxjs/Observable';
 export class UserService {
   constructor (private http: Http) {}
 
-  private url = 'http://localhost:8100/user/add';  // URL to web API
+  private url = 'http://localhost:8100/login';  // URL to web API
 
   addUser (username: string, password: string): Observable<User> {
     let body = JSON.stringify({ username, password });
