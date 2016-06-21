@@ -19,5 +19,13 @@ export class UserValidators {
 
     return { 'invalid': true };
   }
+  static password(control: Control): ValidationResult { 
+
+    if (REG.PASSWORD.test(control.value)) {
+      return null;
+    }
+
+    return { 'invalid': true };
+  }
 
 }

@@ -26,6 +26,7 @@ export class LoginComponent {
 
   form: ControlGroup;
   username: Control;
+  password: Control;
   
   constructor(private builder: FormBuilder, private userService: UserService) {
     
@@ -33,18 +34,23 @@ export class LoginComponent {
       "",
       Validators.compose([Validators.required, UserValidators.username])
     );
+
+    this.password = new Control(
+      "",
+      Validators.compose([Validators.required, UserValidators.password])
+    );
     
     this.form = builder.group({
-      username:  this.username
+      username:  this.username,
+      password:  this.password,
     });
   }
 
-  model = new User(1, 'admin', 'admin');
+  model = new User('admin', '123456');
 
-  submitted = false;
+  logined = false;
+  loginMessage = '';
   onSubmit() {
-    console.log(this.model);
-    this.submitted = true;
     this.addUser(this.model.username, this.model.password);
   }
 
@@ -53,15 +59,22 @@ export class LoginComponent {
     this.userService
         .addUser(username, password)
         .subscribe(
-          user  => console.log('add user', user),
+          (data) => {
+            if (data.success) {
+              this.logined = true;
+            } else {
+              this.loginMessage = data.message;
+            }
+          },
           error =>  console.log('error', error)
         );
   }
 
   active = true;
-  newUser() {
-    this.model = new User(2, '', '');
+  reset() {
+    this.model = new User('', '');
     this.active = false;
+    this.loginMessage = '';
     setTimeout(()=> this.active=true, 0);
   }
 }
