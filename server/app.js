@@ -52,7 +52,7 @@ server.post('/user/add', function(req, res) {
   if (user) {
     res.json({
       success: false,
-      message: 'username `' + item.username + '` is exists'
+      message: '"' + item.username + '" is exists'
     })
   } else {
     item.password = md5(item.password);

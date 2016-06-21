@@ -6,6 +6,7 @@ import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
 import { FORM_PROVIDERS } from '@angular/common';
 import { AboutComponent } from './+about/index';
 import { LoginComponent } from './+login/index';
+import { RegComponent } from './+reg/index';
 import { HomeComponent } from './+home/index';
 import { HelpComponent } from './+help/index';
 
@@ -32,7 +33,8 @@ import { HelpComponent } from './+help/index';
   { path: '/home', component: HomeComponent},
   { path: '/help', component: HelpComponent},
   //{ path: '/**', redirectTo: ['Index'] }
-  { path: '/login', component: LoginComponent}
+  { path: '/login', component: LoginComponent},
+  { path: '/reg', component: RegComponent},
 ])
 export class AppComponent {
   angularclassLogo = 'assets/img/angularclass-avatar.png';

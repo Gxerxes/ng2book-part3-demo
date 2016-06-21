@@ -1,14 +1,14 @@
 <div class="container">
 
-  <div [hidden]="logined">
-    <h1>登录</h1>
+  <div [hidden]="reged">
+    <h1>注册</h1>
     <form
       *ngIf="active"
       [ngFormModel]="form"
       (ngSubmit)="onSubmit()"
-      #loginForm="ngForm"
+      #regForm="ngForm"
     >
-      <div [hidden]='!loginMessage' class="alert alert-danger">{{loginMessage}}</div>
+      <div [hidden]='!regMessage' class="alert alert-danger">{{regMessage}}</div>
       <div class="form-group">
         <label for="username">用户名:</label>
         <input
@@ -27,7 +27,7 @@
       <div class="form-group">
         <label for="password">密码:</label>
         <input
-          type="password"
+          type="{{showPassword ? 'text' : 'password'}}"
           class="form-control"
           required
           [(ngModel)]="model.password"
@@ -39,19 +39,19 @@
           <p *ngIf="password.errors.invalid">请填写 6-20 个字符</p>
         </div>
       </div>
+      <div class="form-group">
+        <input type="checkbox" id="showPassword" (change)="showPassword=!showPassword">
+        <label for="showPassword">显示密码</label>
+      </div>
       <button
         type="submit"
         class="btn btn-default"
-        [disabled]="!loginForm.form.valid"
+        [disabled]="!regForm.form.valid"
       >提交</button>
-      <button type="button" class="btn btn-default" (click)="reset()">重置</button>
-      <div class="reg">
-        <a [routerLink]=" ['/reg'] ">注册</a>
-      </div>
     </form>
   </div>
 
-  <div [hidden]="!logined">
-    <h2>Hello, Welcome {{ model.username }}</h2>
+  <div [hidden]="!reged">
+    <h2>注册成功，<a [routerLink]=" ['/login'] ">登录</a></h2>
   </div>
 </div>

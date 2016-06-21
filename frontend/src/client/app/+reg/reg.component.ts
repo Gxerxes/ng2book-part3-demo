@@ -13,18 +13,18 @@ import { UserValidators } from './user.validators';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 /**
- * This class represents the lazy loaded LoginComponent.
+ * This class represents the lazy loaded RegComponent.
  */
 @Component({
   moduleId: module.id,
-  selector: 'login',
+  selector: 'reg',
   providers: [UserService],
-  templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css'],
+  templateUrl: 'reg.component.html',
+  styleUrls: ['reg.component.css'],
   directives: [ROUTER_DIRECTIVES]
 })
 
-export class LoginComponent {
+export class RegComponent {
 
   form: ControlGroup;
   username: Control;
@@ -50,8 +50,8 @@ export class LoginComponent {
 
   model = new User('', '');
 
-  logined = false;
-  loginMessage = '';
+  reged = false;
+  regMessage = '';
   onSubmit() {
     this.addUser(this.model.username, this.model.password);
   }
@@ -63,9 +63,9 @@ export class LoginComponent {
         .subscribe(
           (data) => {
             if (data.success) {
-              this.logined = true;
+              this.reged = true;
             } else {
-              this.loginMessage = data.message;
+              this.regMessage = data.message;
             }
           },
           error =>  console.log('error', error)
@@ -76,7 +76,7 @@ export class LoginComponent {
   reset() {
     this.model = new User('', '');
     this.active = false;
-    this.loginMessage = '';
+    this.regMessage = '';
     setTimeout(()=> this.active=true, 0);
   }
 }
