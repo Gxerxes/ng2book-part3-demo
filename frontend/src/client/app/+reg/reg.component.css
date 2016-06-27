@@ -1,7 +1,7 @@
 :host {
   display: block;
   padding: 0 16px;
-  margin: 20px auto 210px;
+  margin: 20px auto;
 }
 
 h2 {
@@ -32,4 +32,8 @@ input[type=password] {
 
 p {
   margin-top: 0;
+}
+
+.login {
+  margin-top: 30px;
 }

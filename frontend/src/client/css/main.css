@@ -9,7 +9,7 @@ div {
 
 /* Box-sizing border-box */
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 /* Set up a default font and some padding to provide breathing room */
