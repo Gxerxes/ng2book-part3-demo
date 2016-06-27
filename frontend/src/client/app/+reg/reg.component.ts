@@ -56,20 +56,23 @@ export class RegComponent {
     this.addUser(this.model.username, this.model.password);
   }
 
+  success(result:any) {
+    if (result.success) {
+      this.reged = true;
+    } else {
+      this.regMessage = result.message;
+    }
+  }
+
+  error(error:any) {
+    console.error('error', error)
+  }
+
   addUser(username:string, password:string) {
     if (!username || !password) { return; }
     this.userService
         .addUser(username, password)
-        .subscribe(
-          (data) => {
-            if (data.success) {
-              this.reged = true;
-            } else {
-              this.regMessage = data.message;
-            }
-          },
-          error =>  console.log('error', error)
-        );
+        .subscribe(this.success, this.error);
   }
 
   active = true;

@@ -56,20 +56,23 @@ export class LoginComponent {
     this.addUser(this.model.username, this.model.password);
   }
 
+  success(result:any) {
+    if (result.success) {
+      this.logined = true;
+    } else {
+      this.loginMessage = result.message;
+    }
+  }
+
+  error(error:any) {
+    console.error(error);
+  }
+
   addUser(username:string, password:string) {
     if (!username || !password) { return; }
     this.userService
         .addUser(username, password)
-        .subscribe(
-          (data) => {
-            if (data.success) {
-              this.logined = true;
-            } else {
-              this.loginMessage = data.message;
-            }
-          },
-          error =>  console.log('error', error)
-        );
+        .subscribe(this.success, this.error);
   }
 
   active = true;

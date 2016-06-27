@@ -166,10 +166,10 @@ var XMLHttpRequestUpload: {
 export = XMLHttpRequest;
 }
 declare module 'xhr2/lib/xhr2' {
-import alias = require('~xhr2/lib/xhr2');
-export = alias;
+import main = require('~xhr2/lib/xhr2');
+export = main;
 }
 declare module 'xhr2' {
-import alias = require('~xhr2/lib/xhr2');
-export = alias;
+import main = require('~xhr2/lib/xhr2');
+export = main;
 }
