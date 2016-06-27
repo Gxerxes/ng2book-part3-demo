@@ -19,12 +19,7 @@ import { HelpComponent } from './+help/index';
   selector: 'app',
   viewProviders: [...FORM_PROVIDERS],
   templateUrl: 'app.component.html',
-  styles: [`
-    footer {
-      margin: 30px;
-      text-align:center;
-    }
-  `],
+  styleUrls: ['app.component.css'],
   pipes: [],
   directives: [ROUTER_DIRECTIVES]
 })
