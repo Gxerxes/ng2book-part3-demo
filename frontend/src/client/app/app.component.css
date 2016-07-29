@@ -39,3 +39,6 @@ footer {
     padding: 0 10px;
     font-weight: bold;
 }
+.nav-wrapper ul li a.active{
+    background-color: rgba(0,0,0,0.1);
+}

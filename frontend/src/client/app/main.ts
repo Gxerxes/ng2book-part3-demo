@@ -2,10 +2,11 @@ import { APP_BASE_HREF } from '@angular/common';
 import { enableProdMode, provide } from '@angular/core';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
-import {ROUTER_PROVIDERS} from '@angular/router';
+//import {ROUTER_PROVIDERS} from '@angular/router';
 import {HTTP_PROVIDERS} from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { APP_ROUTER_PROVIDERS } from './router/app.router';
 
 const ENV_PROVIDERS: any = [];
 
@@ -21,9 +22,11 @@ if ('<%= ENV %>' === 'prod') {
  */
 bootstrap(AppComponent, [
   HTTP_PROVIDERS,
-  ROUTER_PROVIDERS,
+  //ROUTER_PROVIDERS,
+  APP_ROUTER_PROVIDERS,
   provide(APP_BASE_HREF, { useValue: '<%= APP_BASE %>' })
-]);
+])
+.catch(err => console.error(err));
 
 // In order to start the Service Worker located at "./worker.js"
 // uncomment this line. More about Service Workers here

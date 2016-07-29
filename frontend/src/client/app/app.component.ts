@@ -1,6 +1,6 @@
 import './rx.operators';
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
+import { ROUTER_DIRECTIVES, ActivatedRoute } from '@angular/router';
 //import {RouterActive} from './common/directives/router-active';
 
 import { FORM_PROVIDERS } from '@angular/common';
@@ -23,17 +23,11 @@ import { HelpComponent } from './+help/index';
   pipes: [],
   directives: [ROUTER_DIRECTIVES]
 })
-@Routes([
-  { path: '/', component: HomeComponent},
-  { path: '/home', component: HomeComponent},
-  { path: '/help', component: HelpComponent},
-  //{ path: '/**', redirectTo: ['Index'] }
-  { path: '/login', component: LoginComponent},
-  { path: '/reg', component: RegComponent},
-])
 export class AppComponent {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular DEMO - 问卷系统';
   url = 'https://github.com/gf-rd';
-  constructor(){}
+  constructor(route: ActivatedRoute){
+    console.log(route);
+  }
 }

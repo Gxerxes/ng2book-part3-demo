@@ -47,7 +47,7 @@ export class HomeComponent {
       pagination: '.swiper-pagination',
       paginationClickable: true
     });
-    // this.title.getData().subscribe(data => this.data = data);
+     this.title.getData().subscribe(data => this.data = data);
   }
 
 }

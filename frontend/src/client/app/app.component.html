@@ -4,23 +4,23 @@
         <a href="#" class="logo">{{ name }}</a>
         <!--<login-pop></login-pop>-->
         <ul id="nav-mobile">
-            <li router-active>
-                <a [routerLink]=" ['/'] ">首页</a>
+            <li>
+                <a [routerLink]="['/home']" routerLinkActive="active">首页</a>
             </li>
-            <li router-active>
-                <a [routerLink]=" ['/reg'] ">注册</a>
+            <li>
+                <a [routerLink]="['/reg']" routerLinkActive="active">注册</a>
             </li>
-            <li router-active>
-                <a [routerLink]=" ['/login'] ">登录</a>
+            <li>
+                <a [routerLink]="['/login']" routerLinkActive="active">登录</a>
             </li>
-            <li router-active>
-                <a [routerLink]=" ['/home'] ">创建问卷</a>
+            <li>
+                <a [routerLink]="['/create']" routerLinkActive="active">创建问卷</a>
             </li>
-            <li router-active>
-                <a [routerLink]=" ['/my'] ">我的问卷</a>
+            <li>
+                <a [routerLink]="['/my']" routerLinkActive="active">我的问卷</a>
             </li>
-            <li router-active>
-                <a [routerLink]=" ['/help'] ">使用帮助</a>
+            <li>
+                <a [routerLink]="['/help']" routerLinkActive="active">使用帮助</a>
             </li>
         </ul>
     </div>
