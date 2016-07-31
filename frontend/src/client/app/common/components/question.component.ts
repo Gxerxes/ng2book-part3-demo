@@ -3,30 +3,35 @@ import { QuestionModel } from '../../models/question.model';
 
 export class QuestionComponent implements OnInit {
   question:QuestionModel;
-  desc: string;
-  answer:string;
-  isEdit: boolean = true;
+  newQuestion:QuestionModel;
+  isEdit:boolean = false;
   isPublished:boolean = false;
-  delQuestionRequest:EventEmitter<any> = new EventEmitter();
+  delQuesitonRequest: EventEmitter<any> = new EventEmitter();
 
   constructor() {
+    this.newQuestion = new QuestionModel();
+  }
+
+  toEdit() {
+    this.isEdit = true;
   }
 
   toSave() {
+    this.question = this.newQuestion;
     this.isEdit = false;
-    this.question.desc = this.desc;
   }
 
-  toCancel(){
-    this.isEdit = false;
-    this.desc = this.question.desc;
-  }
-
-  toDelete(event:any){
+  toDelete() {
     this.delQuestionRequest.emit(this.question);
   }
 
+  toCancel() {
+    this.newQuestion = this.question;
+    this.isEdit = false;
+  }
+
   ngOnInit(): void {
-    this.desc = this.question.desc;
+    this.question == null ? this.isEdit = true :
+        this.newQuestion = this.question;
   }
 }

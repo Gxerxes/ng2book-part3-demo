@@ -9,6 +9,7 @@ export const enum QuestionnaireState{
 
 export interface QuestionnaireModel{
   id?:number;   //问卷ID
+  owner:string; //问卷创建者
   title:string; //问卷标题
   starter:string; //开始问候语
   ending:string;  //结束问候语

@@ -1,4 +1,4 @@
-//问题类型
+//question type
 export const enum QuestionType{
   Text,
   SingleSelect,
@@ -7,7 +7,7 @@ export const enum QuestionType{
 }
 
 export interface QuestionModel{
-  desc:string; //问题标题（描述）
+  title:string; //问题标题（描述）
   type:QuestionType; //问题类型
   options?:any[];//问题选项
   answer:any; //问题答案
