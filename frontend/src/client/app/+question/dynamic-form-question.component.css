@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+input {
+  border: 1px solid #106cc8;
+  width: 100%;
+}
+
+select {
+  display: block;
+  border: 1px solid #106cc8;
+}
+
+label {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 20px;
+}
+
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}
+
+input[type=text],
+input[type=password] {
+  padding-left: 10px;
+  letter-spacing: 2px;
+}
+
+[type=submit] {
+  margin-right: 20px;
+}
+
+.errorMessage {
+  margin-top: 5px;
+  color: #ee6e73;
+}

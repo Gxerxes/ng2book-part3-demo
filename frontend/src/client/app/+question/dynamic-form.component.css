@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  margin: 20px 20%;
+}
+
+.form-row {
+  height: 115px;
+}
+
+button {
+  margin: 40px 16px;
+  text-align: center;
+}

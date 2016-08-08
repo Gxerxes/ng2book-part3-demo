@@ -5,12 +5,8 @@ import { QuestionService } from './question.service';
 
 @Component({
   selector: 'register',
-  template: `
-    <div>
-      <h2>Job Application for Heroes</h2>
-      <dynamic-form [questions]="questions"></dynamic-form>
-    </div>
-  `,
+  templateUrl: 'app/+question/register.component.html',
+  styleUrls: ['app/+question/register.component.css'],
   directives: [DynamicFormComponent],
   providers:  [QuestionService]
 })
