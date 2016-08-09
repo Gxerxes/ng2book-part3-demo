@@ -2,7 +2,7 @@ import {RouterConfig, provideRouter} from "@angular/router";
 
 import { AboutComponent } from '../+about/index';
 import { LoginComponent } from '../+login/index';
-import { RegisterComponent } from '../+question/register.component';
+import { RegisterComponent } from '../+register/index';
 import { HomeComponent } from '../+home/index';
 import { HelpComponent } from '../+help/index';
 

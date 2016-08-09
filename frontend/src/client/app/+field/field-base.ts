@@ -1,4 +1,4 @@
-export class QuestionBase<T>{
+export class FieldBase<T>{
   value: T;
   key: string;
   label: string;
@@ -25,10 +25,3 @@ export class QuestionBase<T>{
     this.controlType = options.controlType || '';
   }
 }
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

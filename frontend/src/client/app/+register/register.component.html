@@ -1,0 +1,25 @@
+<div>
+  <h2>注册</h2>
+  <register-form [fields]="fields">
+    <div *ngIf="!registered">
+      <form (ngSubmit)="register()" [formGroup]="form">
+
+        <div *ngFor="let field of fields" class="form-row">
+          <field [field]="field" [form]="form"></field>
+        </div>
+
+        <div class="form-row form-checkbox">
+          <input type="checkbox" id="showPassword" (click)="showPassword()">
+          <label for="showPassword">显示密码</label>
+        </div>
+
+        <div class="form-row">
+          <button type="submit" [disabled]="!form.valid">提交</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="registered">
+      <h3>注册成功</h3>
+    </div>
+  </register-form>
+</div>

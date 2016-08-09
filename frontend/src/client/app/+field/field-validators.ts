@@ -9,32 +9,29 @@ interface ValidationResult {
   [key: string]: boolean;
 }
 
-export class FormValidators {
+export class FieldValidators {
 
-  static username(control: FormControl): ValidationResult {
+  public static username(control: FormControl): ValidationResult {
     if (control.value.length === 0) {
       return {
         empty: true
       }
     }
-
     if (REG.USERNAME.test(control.value)) {
       return null;
     }
-
     return { 'invalid': true };
   }
-  static password(control: FormControl): ValidationResult {
+
+  public static password(control: FormControl): ValidationResult {
     if (control.value.length === 0) {
       return {
         empty: true
       }
     }
-
     if (REG.PASSWORD.test(control.value)) {
       return null;
     }
-
     return { 'invalid': true };
   }
 
