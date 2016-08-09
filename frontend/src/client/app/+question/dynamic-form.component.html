@@ -1,5 +1,5 @@
-<div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+<div *ngIf="!registered">
+  <form (ngSubmit)="register()" [formGroup]="form">
 
     <div *ngFor="let question of questions" class="form-row">
       <df-question [question]="question" [form]="form"></df-question>
@@ -9,12 +9,10 @@
       <button type="submit" [disabled]="!form.valid">提交</button>
     </div>
   </form>
-
-  <div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
-  </div>
 </div>
-
+<div *ngIf="registered">
+  <h3>注册成功</h3>
+</div>
 
 <!-- 
 Copyright 2016 Google Inc. All Rights Reserved.

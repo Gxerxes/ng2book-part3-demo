@@ -10,22 +10,33 @@ import { QuestionControlService }       from './question-control.service';
   templateUrl: 'app/+question/dynamic-form.component.html',
   styleUrls: ['app/+question/dynamic-form.component.css'],
   directives: [DynamicFormQuestionComponent, REACTIVE_FORM_DIRECTIVES],
-  providers:  [QuestionControlService]
+  providers: [QuestionControlService]
 })
 export class DynamicFormComponent implements OnInit {
 
   @Input() questions: QuestionBase<any>[] = [];
   form: FormGroup;
-  payLoad = '';
+  registered = false;
 
-  constructor(private qcs: QuestionControlService) {  }
+  constructor(private qcs: QuestionControlService) { }
 
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
   }
 
-  onSubmit() {
-    this.payLoad = JSON.stringify(this.form.value);
+  register() {
+    console.log(this.form.value, 'dfdfdf');
+    this
+      .qcs
+      .addUser(this.form.value)
+      .subscribe(res => {
+        let body = res.json();
+        if (body && body.success) {
+          this.registered = true;
+        }
+      }, error => {
+        console.error(error);
+      });
   }
 }
 

@@ -11,3 +11,7 @@ button {
   margin: 40px 16px;
   text-align: center;
 }
+
+button[disabled] {
+  background-color: #ccc;
+}

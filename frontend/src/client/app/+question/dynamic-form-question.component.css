@@ -5,7 +5,8 @@
 }
 
 input {
-  border: 1px solid #106cc8;
+  border: 1px solid #106cc8 !important;
+  box-shadow: none !important;
   width: 100%;
   border-radius: 5px;
 }
@@ -35,6 +36,7 @@ input[type=text],
 input[type=password] {
   padding-left: 10px;
   letter-spacing: 2px;
+  margin-bottom: 0;
 }
 
 [type=submit] {
@@ -44,4 +46,8 @@ input[type=password] {
 .errorMessage {
   margin-top: 5px;
   color: #ee6e73;
+}
+
+.tipsMessage {
+  margin-top: 5px;
 }

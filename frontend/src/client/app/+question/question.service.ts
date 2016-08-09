@@ -18,6 +18,7 @@ export class QuestionService {
         label: '用户名',
         value: '',
         required: true,
+        pattern: 'username',
         order: 1
       }),
 
@@ -27,6 +28,7 @@ export class QuestionService {
         type: 'password',
         value: '',
         required: true,
+        pattern: 'password',
         order: 2
       }),
 
@@ -43,6 +45,7 @@ export class QuestionService {
 
     return questions.sort((a, b) => a.order - b.order);
   }
+
 }
 
 
