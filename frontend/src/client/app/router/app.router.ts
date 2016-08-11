@@ -2,7 +2,7 @@ import {RouterConfig, provideRouter} from "@angular/router";
 
 import { AboutComponent } from '../+about/index';
 import { LoginComponent } from '../+login/index';
-import { RegComponent } from '../+reg/index';
+import { RegisterComponent } from '../+register/index';
 import { HomeComponent } from '../+home/index';
 import { HelpComponent } from '../+help/index';
 
@@ -24,8 +24,8 @@ export const AppRouters: RouterConfig = [
     component: LoginComponent,
   },
   {
-    path: "reg",
-    component: RegComponent,
+    path: "register",
+    component: RegisterComponent,
   },
 ];
 

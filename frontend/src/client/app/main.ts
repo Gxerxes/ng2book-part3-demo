@@ -4,7 +4,7 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 import {ELEMENT_PROBE_PROVIDERS} from '@angular/platform-browser';
 //import {ROUTER_PROVIDERS} from '@angular/router';
 import {HTTP_PROVIDERS} from '@angular/http';
-
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { APP_ROUTER_PROVIDERS } from './router/app.router';
 
@@ -21,6 +21,8 @@ if ('<%= ENV %>' === 'prod') {
  * @see https://angular.io/docs/ts/latest/api/platform-browser-dynamic/index/bootstrap-function.html
  */
 bootstrap(AppComponent, [
+  disableDeprecatedForms(),
+  provideForms(),
   HTTP_PROVIDERS,
   //ROUTER_PROVIDERS,
   APP_ROUTER_PROVIDERS,
