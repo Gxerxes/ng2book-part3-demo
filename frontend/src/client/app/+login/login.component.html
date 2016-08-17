@@ -8,13 +8,8 @@
           <field [field]="field" [form]="form"></field>
         </div>
 
-        <div class="form-row form-checkbox">
-          <input type="checkbox" id="showPassword" (click)="showPassword()">
-          <label for="showPassword">显示密码</label>
-        </div>
-
         <div class="form-row">
-          <button type="submit" [disabled]="!form.valid">提交</button>
+          <button type="submit" [disabled]="!form.valid">登录</button>
         </div>
       </form>
     </div>

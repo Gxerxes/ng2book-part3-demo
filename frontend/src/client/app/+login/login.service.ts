@@ -9,19 +9,12 @@ import { FieldText }     from '../+field/field-text';
 import { FieldRadio }     from '../+field/field-radio';
 import { FieldValidators } from '../+field/field-validators';
 
-class User {
-  constructor(
-    public username: string,
-    public password: string
-  ) { }
-}
-
 @Injectable()
 export class LoginService {
 
   constructor(private http: Http) { }
 
-  private add_user_url = 'http://localhost:8100/login';
+  private login_url = 'http://localhost:8100/login';
 
   getFields() {
     let fields: FieldBase<any>[] = [
@@ -66,6 +59,6 @@ export class LoginService {
     headers.append('Content-Type', 'application/json');
 
     return this.http
-      .post(this.add_user_url, body, { headers });
+      .post(this.login_url, body, { headers });
   }
 }

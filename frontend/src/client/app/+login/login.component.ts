@@ -27,14 +27,6 @@ export class LoginComponent implements OnInit {
     this.form = this.rs.toFormGroup(this.fields);
   }
 
-  showPassword () {
-    this.fields.forEach(field => {
-      if (field.key === 'password') {
-        field.type = field.type === 'password' ? 'text' : 'password';
-      }
-    });
-  }
-
   login() {
     this.rs
       .login(this.form.value)
