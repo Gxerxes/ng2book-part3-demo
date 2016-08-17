@@ -9,19 +9,12 @@ import { FieldText }     from '../+field/field-text';
 import { FieldRadio }     from '../+field/field-radio';
 import { FieldValidators } from '../+field/field-validators';
 
-class User {
-  constructor(
-    public username: string,
-    public password: string
-  ) { }
-}
-
 @Injectable()
 export class RegisterService {
 
   constructor(private http: Http) { }
 
-  private add_user_url = 'http://localhost:8100/user/add';
+  private register_url = 'http://localhost:8100/user/add';
 
   getFields() {
     let fields: FieldBase<any>[] = [
@@ -42,29 +35,6 @@ export class RegisterService {
         pattern: 'password',
         order: 2
       }),
-      // new FieldRadio({
-      //   key: 'gender',
-      //   label: '性别',
-      //   type: 'radio',
-      //   value: '',
-      //   required: false,
-      //   items: [{
-      //     name: '男',
-      //     value: 'male'
-      //   }, {
-      //     name: '女',
-      //     value: 'female'
-      //   }],
-      //   order: 3
-      // }),
-      // new FieldText({
-      //   key: 'showpassword',
-      //   label: '显示密码',
-      //   type: 'checkbox',
-      //   value: false,
-      //   required: false,
-      //   order: 4
-      // }),
     ];
     return fields.sort((a, b) => a.order - b.order);
   }
@@ -89,6 +59,6 @@ export class RegisterService {
     headers.append('Content-Type', 'application/json');
 
     return this.http
-      .post(this.add_user_url, body, { headers });
+      .post(this.register_url, body, { headers });
   }
 }
